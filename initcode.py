@@ -68,6 +68,7 @@ subjects = {
     "History": {"type": "tutorial"},
     "English": {"type": "lecture"}
 }
+
 rooms = ["Room A", "Room B", "Room C"]
 time_slots = {
     "lecture": ["9:00-10:30", "11:00-12:30", "2:00-3:30"],
