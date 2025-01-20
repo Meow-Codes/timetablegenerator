@@ -1,8 +1,17 @@
-Course Code,Course Name,L-T-P-S-C,Faculty
-DS309,Cloud Computing,3-0-0-4-4,Dr. Animesh Chaturvedi
-DS306,Financial Data Analytics,3-0-0-4-4,Dr. Utkarsh Khaire
-DS307,Innovation & Entrepreneurship,3-1-0-0-4,Mr. Ram Subramanian
-DS308,Data Security & Privacy,3-1-0-0-4,Dr. Abdul Wahid & Dr. Rajendra Hegadi
-Elective,Deep Learning for Computer Vision/ Large Languange Models/ Natural Language Processing/ Deep Speech Processing/ CMOS RF Circuit Design/ Blockchain Technology/ Introduction to 5G Network/ Model Checking/ Quantum Communication/ Quantum HPC and AI/ Design Thinking and Innovation,3-1-0-0-4,Dr. Chinmayanand
-DS399,Mini Project-I,0-0-0-8-2, Coordinator: Dr. Shirshendu
-HS101,Environmental Studies,0-0-0-8-2, -
+Elective Basket,Course Code,Course Name,L,T,P,S,C,Faculty,Classroom
+-,DS309,Cloud Computing,3,0,0,4,4,Dr. Animesh Chaturvedi,C302
+-,DS306,Financial Data Analytics,3,0,0,4,4,Dr. Utkarsh Khaire,C302
+-,DS307,Innovation & Entrepreneurship,3,1,0,0,4,Mr. Ram Subramanian,C302
+-,DS308,Data Security & Privacy,3,1,0,0,4,Dr. Abdul Wahid & Dr. Rajendra Hegadi,C302
+-,DS399,Mini Project-I,0,0,0,8,2, Coordinator: Dr. Shirshendu,-
+-,HS101,Environmental Studies,0,0,0,5,2,-,-
+B1,CS464,Deep Learning for Computer Vision,3,1,0,0,4,Dr. Chinmayanand,C302
+B1,New,Large Languange Models,3,0,0,4,4,Dr. Sunil S,C004
+B1,CS458,Natural Language Processing,3,1,0,0,4,Dr. Krishnendu,C303
+B1,New,Deep Speech Processing,3,1,0,0,4,Prof. SRM Prasanna,C305
+B2,CS455,Blockchain Technology,3,0,0,4,4,Dr. Rajendra H,C302
+B2,EC361,Introduction to 5G Network,3,1,0,0,4,Dr. Jagadeesha R Bhat,C303
+B2,New,Model Checking,3,0,0,4,4,Dr. Pavan,C305
+B2,New,Quantum Communication,3,0,0,0,3,Dr. Aswath B,C304
+B2,New,Quantum HPC and AI,1,0,0,0,1,Dr. Manish M (Dr. Aswath),Online
+B2,New,Design Thinking and Innovation,3,1,0,0,4,Dr. Sandesh P,C204
