@@ -1,7 +1,7 @@
-Course Code,Course Name,L,T,P,S,C,Faculty
-MA202,Linear Algebra,3,1,0,0,4,Dr. Anand Barangi
-CS206,Theory of Computing,3,1,0,0,4,Dr. Sunil CK
-CS204,Operating Systems,3,1,0,0,4,Dr. Malay & Dr. Dibyajyothi
-CS301,Software Engineering,3,1,0,0,4,Dr. Sunil Kumar PV & Dr. Vivekraj
-CS310,Database Management Systems,3,1,2,0,5,Dr. Abdul
-HS205,Ethics,3,0,0,0,3,"Dr. Jolly Thomas, IIT Dharwad"
+Course Code,Course Name,L,T,P,S,C,Faculty,Classroom
+MA202,Linear Algebra,3,1,0,0,4,Dr. Anand Barangi,C102
+CS206,Theory of Computing,3,1,0,0,4,Dr. Sunil CK,C102
+CS204,Operating Systems,3,1,0,0,4,Dr. Malay & Dr. Dibyajyothi,C102
+CS301,Software Engineering,3,1,0,0,4,Dr. Sunil Kumar PV & Dr. Vivekraj,C102
+CS310,Database Management Systems,3,1,2,0,5,Dr. Abdul,C102
+HS205,Ethics,3,0,0,0,3,"Dr. Jolly Thomas, IIT Dharwad",C004
