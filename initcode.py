@@ -80,3 +80,4 @@ generator = TimetableGenerator(teachers, subjects, rooms, time_slots)
 timetable = generator.generate()
 
 generator.display()
+print( "hello bhattraj")
