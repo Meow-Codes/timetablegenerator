@@ -17,15 +17,17 @@ The Timetable Automation software automates the scheduling of courses for academ
 The software is hosted on GitHub. Follow these steps to download it:
 
 ### 2.1 Prerequisites
+
 - **Git**: Ensure Git is installed on your system. Download it from [git-scm.com](https://git-scm.com/downloads) if needed.
 - **Python 3.8+**: Required to run the software. Download from [python.org](https://www.python.org/downloads/).
 - **Visual Studio Code (VS Code)**: Recommended for editing and running the code. Download from [code.visualstudio.com](https://code.visualstudio.com/).
 
 ### 2.2 Steps to Clone the Repository
+
 1. **Create a Folder**:
    - Create a new folder on your desktop (e.g., `TimetableAutomation`) or any preferred location.
-   
 2. **Open Terminal**:
+
    - Right-click inside the folder and select "Open in Terminal" (Windows: "Git Bash Here", macOS/Linux: "Open Terminal").
    - Alternatively, open your terminal and navigate to the folder using:
      ```bash
@@ -33,6 +35,7 @@ The software is hosted on GitHub. Follow these steps to download it:
      ```
 
 3. **Clone the Repository**:
+
    - Copy the repository URL: `https://github.com/Meow-Codes/timetablegenerator.git`
    - Run the following command in the terminal:
      ```bash
@@ -41,6 +44,7 @@ The software is hosted on GitHub. Follow these steps to download it:
    - This will create a `timetablegenerator` folder inside your chosen directory.
 
 4. **Navigate to the Project Directory**:
+
    - Change to the project directory:
      ```bash
      cd timetablegenerator
@@ -60,7 +64,9 @@ The software is hosted on GitHub. Follow these steps to download it:
 ## 3. Setting Up the Software
 
 ### 3.1 Install Required Python Libraries
+
 1. **Open a Terminal in VS Code**:
+
    - In VS Code, go to `Terminal` > `New Terminal`.
 
 2. **Install Dependencies**:
@@ -74,6 +80,7 @@ The software is hosted on GitHub. Follow these steps to download it:
 ![*Figure 2 - Installing dependencies in VS Code terminal*](snapshots/2.png)
 
 ### 3.2 Directory Structure
+
 After cloning, the project directory should look like this:
 
 ```
@@ -100,7 +107,9 @@ timetablegenerator/
 The software relies on CSV files in the `data/` directory for configuration and course data. Below are the required files and their expected formats:
 
 ### 4.1 Configuration Files Overview
+
 - **`config.csv`**:
+
   - Contains scheduling parameters.
   - Format:
     ```
@@ -115,6 +124,7 @@ The software relies on CSV files in the `data/` directory for configuration and 
     - `teaching_assistant_threshold`: Threshold for assigning teaching assistants (not currently used).
 
 - **`courses.csv`**:
+
   - Contains course details.
   - Format:
     ```
@@ -130,6 +140,7 @@ The software relies on CSV files in the `data/` directory for configuration and 
     - `faculty_ids`: Semicolon-separated list of faculty IDs.
 
 - **`rooms.csv`**:
+
   - Contains room details.
   - Format:
     ```
@@ -142,6 +153,7 @@ The software relies on CSV files in the `data/` directory for configuration and 
     - `type`: E.g., `LECTURE_ROOM`, `COMPUTER_LAB`, `HARDWARE_LAB`, `SEATER_120`, `SEATER_240`.
 
 - **`sections.csv`**:
+
   - Contains section details.
   - Format:
     ```
@@ -153,6 +165,7 @@ The software relies on CSV files in the `data/` directory for configuration and 
     - `strength`: Number of students in the section.
 
 - **`faculty.csv`**:
+
   - Contains faculty details.
   - Format:
     ```
@@ -162,6 +175,7 @@ The software relies on CSV files in the `data/` directory for configuration and 
     ```
 
 - **`assistants.csv`** (Optional):
+
   - Contains assistant details (not currently used).
   - Format:
     ```
@@ -178,7 +192,9 @@ The software relies on CSV files in the `data/` directory for configuration and 
     ```
 
 ### 4.2 Steps to Configure
+
 1. **Prepare CSV Files**:
+
    - Ensure all required CSV files are populated with correct data as per the formats above.
    - Place them in the `data/` directory. If the directory doesn’t exist, create it:
      ```bash
@@ -196,22 +212,26 @@ The software relies on CSV files in the `data/` directory for configuration and 
 ## 5. Usage Scenarios
 
 ### 5.1 Scenario 1: Generating a Timetable for a New Academic Session
+
 **Objective**: Generate a timetable for the December 2024 – April 2025 session for CSE, DSAI, and ECE departments.
 
 **Steps**:
+
 1. Ensure all CSV files in the `data/` directory are updated with the latest course, room, and faculty data.
 2. Run the script:
    ```bash
-   python generate_timetable.py
+   python timetable_generator.py
    ```
 3. Check the `output/` directory for the generated Excel file (e.g., `timetable_20250424_143022.xlsx`).
 4. Open the Excel file to view timetables for each section, elective details, and statistics.
 
 **Expected Output**:
+
 - Timetables for each section in timetable.html and timetable.xlsx.
 
 ![*Figure 4 - Generated timetable in Excel*](snapshots/4.png)
 ![*Figure 4 - Generated timetable for CSE 4A in Excel*](snapshots/5.png)
+
 ---
 
 ## 6. Requirements Satisfied by Current Version
@@ -230,6 +250,7 @@ The software addresses the following requirements from the `Timetable_Requiremen
 - **REQ-18-LUNCH (Mandatory)**: Staggers lunch breaks by department to avoid overcrowding (CSE: 13:00-14:30, DSAI: 13:15-14:45, ECE: 13:30-15:00).
 
 **Unsatisfied Requirements**:
+
 - REQ-01 (modifying existing timetables), REQ-11 (faculty preferences), REQ-12 (reserved slots), REQ-13 (Google Calendar integration), REQ-14 (Excel with different views), REQ-16 (Statistics sheet), REQ-15 (exam timetable), and REQ-17 (teaching/lab assistants) are not yet implemented.
 
 ---
@@ -252,24 +273,30 @@ The following enhancements are planned to address unmet requirements and improve
 ## 8. Frequently Asked Questions (FAQs)
 
 **Q1: What should I do if the script fails to run?**
+
 - **A**: Ensure all CSV files are correctly formatted and placed in the `data/` directory. Check the terminal for error messages, which may indicate missing libraries (re-run `pip install -r requirements.txt`) or invalid data (e.g., missing columns in CSV files).
 
 **Q2: Can I change the slot duration or scheduling days?**
+
 - **A**: Yes, edit the `config.csv` file in the `data/` directory. Modify `slot_duration_minutes` to change the slot duration (e.g., from 30 to 45 minutes) and `scheduling_days` to adjust the days (e.g., `Monday;Tuesday;Wednesday`).
 
 **Q3: How are conflicts handled?**
+
 - **A**: The software avoids room, faculty, and student conflicts by:
   - Checking room availability before scheduling.
   - Ensuring faculty are not scheduled for multiple classes at the same time.
   - Scheduling elective baskets simultaneously to avoid student conflicts.
 
 **Q4: What if a room is not available for a course?**
+
 - **A**: The software logs a warning and attempts to find another room or slot. If no room is available, the course may not be scheduled, and you’ll see a warning in the logs. Consider adding more rooms to `rooms.csv` or adjusting the schedule.
 
 **Q5: How can I view the timetable for a specific section?**
+
 - **A**: Open the generated Excel file in the `output/` directory. Each sheet is named by section (e.g., `CSE_6_1` for CSE 6A). The "Elective Details" sheet provides additional information for elective courses.
 
 **Q6: Can I schedule courses for a new department like DASD?**
+
 - **A**: Yes, add the department to your CSV files (e.g., `courses.csv`, `sections.csv`). The software will automatically recognize and schedule courses for the new department, though you may need to define lunch break timings for it in the script.
 
 ---
@@ -277,6 +304,7 @@ The following enhancements are planned to address unmet requirements and improve
 ## 9. Contact Information
 
 For support or inquiries, contact Team SupremeYaskin via the GitHub repository:
+
 - **Repository**: [https://github.com/Meow-Codes/timetablegenerator](https://github.com/Meow-Codes/timetablegenerator)
 - **Issues**: Submit issues on GitHub for bug reports or feature requests.
 
