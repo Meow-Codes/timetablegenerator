@@ -14,106 +14,65 @@ The software reads configuration and course data from **CSV/Excel** files and ge
    ```bash
    pip install -r requirements.txt
 
-📂 Prepare Data Files
-Create a data/ directory and place the following CSV files inside it:
+### 📂 Prepare Data Files
 
-courses.csv – Course details (e.g., course_code, department, semester, section_id, etc.)
+Create a data/ directory and place the following CSV files inside:
 
-config.csv – Scheduling parameters (e.g., slot_duration_minutes, scheduling_days, etc.)
+1. courses.csv: Course details (course_id, department, semester, course_code, course_name, lecture_hours, tutorial_hours, practical_hours, self_study_hours, credits, faculty_ids, is_elective, basket_id, combined, enrollment, section_id)
 
-rooms.csv – Room details (e.g., room_number, capacity, type)
+2. config.csv: Scheduling parameters (slot_duration_minutes, scheduling_days, etc.)
 
-sections.csv – Section details (e.g., section_id, department, semester, etc.)
+3. rooms.csv: Room details (room_id, room_number, capacity, type, bench_capacity)
 
-faculty.csv – Faculty details (faculty_id, faculty_name, department)
+4. sections.csv: Section details (section_id, batch_name, year, department, strength)
 
-assistants.csv – Assistant details (optional)
+5. faculty.csv: Faculty details (faculty_id, faculty_name)
 
-elective_enrollments.csv – Elective enrollment data (optional)
+6. assistants.csv: Assistant details (optional) (assistant_id, assistant_name, course_id, preference_day, preference_start_time, preference_end_time, is_lab_eligible)
 
-Note: Ensure the directory structure is maintained as data/ relative to the script.
+7. elective_enrollments.csv: Elective enrollment data (optional) (section_id, course_id, enrollment)
 
-▶️ Run the Script
-To generate the timetable, run:
+Note: Make sure the directory structure is maintained as data/ relative to the script.
 
-bash
-Copy
-Edit
+### ▶️ Run the Script
+
+To generate the timetable, run the following command:
+```bash
 python generate_timetable.py
-The output will be saved in the output/ directory as:
+```
+The generated timetable will be saved in the output/ directory as:
+```bash
+timetable.html and timetable.xlsx
+```
 
-Copy
-Edit
-timetable_YYYYMMDD_HHMMSS.xlsx
-✅ Requirements Satisfied
-The current implementation fulfills the following requirements from Timetable_Requirements-CS301 SE course.xlsx:
+### Requirements Satisfied
 
-REQ-02-Config (Mandatory):
-Reads config and course data from CSV files. Parameters such as slot_duration_minutes and scheduling_days are loaded via config_df.
+The current implementation addresses the following requirements from the Timetable_Requirements-CS301 SE course.xlsx document:
 
-REQ-03 (Mandatory):
-Ensures classrooms have enough capacity. Supports splitting students into batches for labs based on sections.csv.
+1. REQ-02-Config (Mandatory): The software reads configuration parameters (e.g., slot_duration_minutes, scheduling_days) and course data (course_name, LTPSC, instructor_name, classroom details, etc.) from CSV files. Configuration is loaded via config_df from data/config.csv.
 
-REQ-04-CONFLICTS (Mandatory):
-Avoids scheduling multiple course components (lectures, tutorials, labs) on the same day.
+2. REQ-03 (Mandatory): Courses are scheduled in classrooms with sufficient capacity based on registered students. If a single room is insufficient, the code supports splitting students into batches (e.g., for labs), though current implementation assumes sections are predefined in sections.csv.
 
-REQ-05 (Mandatory):
-Schedules courses with the same course code across departments separately using a unique timetable_key.
+3. REQ-04-CONFLICTS (Mandatory): The software avoids scheduling multiple components of a course on the same day by prioritizing different days for lectures, tutorials, and practicals. Labs can follow lectures/tutorials as per the logic in scheduling loops.
 
-REQ-06 (Mandatory):
-Adheres to the LTPSC structure. Slot durations are calculated to meet credit hour requirements.
+4. REQ-05 (Mandatory): Courses with the same course code across different departments are scheduled separately by using unique timetable_key (dept_semester_section).
 
-REQ-07 (Mandatory):
-Electives grouped into baskets and scheduled to avoid conflicts. Uses basket_schedules for synchronization.
+5. REQ-06 (Mandatory): The scheduling adheres to the LTPSC structure (Lecture, Tutorial, Practical, Self-study) by calculating slot durations (e.g., 3 slots for 1.5+ lecture hours, 4 slots for practicals) to meet credit requirements.
 
-REQ-08 (Mandatory):
-Allocates labs based on room capacity. Batches created if enrollment exceeds lab room capacity.
+6. REQ-08 (Mandatory): Lab sessions are allocated based on lab room capacity, with batches created if the total enrollment exceeds capacity (e.g., using lab_capacity and batch calculations).
 
-REQ-09-BREAKS (Desired):
-Considers morning (10:30–11:00) and staggered lunch breaks (CSE: 13:00–14:30, DSAI: 13:15–14:45, ECE: 13:30–15:00).
+7. REQ-09-BREAKS (Desired): Morning breaks (10:30-11:00) and lunch breaks (staggered by department: CSE 13:00-14:30, DSAI 13:15-14:45, ECE 13:30-15:00) are included and respected during slot availability checks.
 
-REQ-10-FACULTY (Mandatory):
-Prevents back-to-back classes. Tries to maintain a gap (3 hrs) by controlling daily slot assignments.
+8. REQ-10-FACULTY (Mandatory): Consecutive classes are avoided by checking slot availability across the day. A 3-hour gap is indirectly enforced by limiting scheduling attempts per day, though explicit gap enforcement could be added.
 
-REQ-14-VIEW (Mandatory):
-Exports Excel timetable with sheets for faculty, students, and coordinators, including electives.
+9. REQ-18-LUNCH (Mandatory): Lunch breaks are staggered by department to avoid overcrowding, as defined in lunch_schedule.
 
-REQ-16-ANALYTICS (Desired):
-Room usage statistics included in a Statistics sheet. Instructor and student effort analytics pending.
+### 🚀 Future Enhancements
 
-REQ-18-LUNCH (Mandatory):
-Respects staggered departmental lunch breaks defined in lunch_schedule.
+Faculty preference input interface
 
-⚠️ Notes
-❌ Unsatisfied Requirements
-These are currently not implemented but can be added:
+Reserved slot configuration support
 
-REQ-01 – Modify existing timetable
-
-REQ-11 – Faculty preferences
-
-REQ-12 – Reserved slots
-
-REQ-13 – Google Calendar integration
-
-REQ-15 – Exam timetable
-
-REQ-17 – Teaching/Lab assistants
-
-📸 Snapshots
-Please attach screenshots of the generated Excel timetable to validate:
-
-A section view (e.g., CSE 6A)
-
-Elective course schedule
-
-Statistics sheet
-
-🚀 Future Enhancements
-Faculty preference inputs
-
-Reserved slot configurations
-
-Exam scheduling
+Exam timetable scheduling
 
 Google Calendar integration
