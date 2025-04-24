@@ -87,12 +87,6 @@ room_schedule = {
     for day in scheduling_days
 }
 
-# Track slot availability for optimized randomization
-slot_availability = {
-    day: {slot: 0 for slot in time_slots}
-    for day in scheduling_days
-}
-
 # Define colors for courses and baskets
 color_palette = [
     "FFC1CC", "CCE5FF", "CCFFCC", "FFCC99", "E6CCFF", "FFFFCC",
@@ -115,6 +109,7 @@ def get_faculty_name(faculty_ids):
     return ", ".join(names)
 
 def assign_room(enrollment, component_type, dept, course_code, day, start_slot, duration_slots):
+    # Determine room type based on component
     if component_type == "practical":
         room_type = "COMPUTER_LAB" if "CS" in course_code or "DS" in course_code else "HARDWARE_LAB"
         available_rooms = rooms_df[(rooms_df["type"] == room_type) & (rooms_df["capacity"] >= min(enrollment, 40))]
@@ -122,8 +117,11 @@ def assign_room(enrollment, component_type, dept, course_code, day, start_slot, 
         available_rooms = rooms_df[rooms_df["type"].isin(["LECTURE_ROOM", "SEATER_120", "SEATER_240"]) & (rooms_df["capacity"] >= enrollment)]
     
     if available_rooms.empty:
-        logging.warning(f"No available rooms for {course_code} ({component_type}) with enrollment {enrollment}")
+        logging.warning(f"No rooms available for {course_code} ({component_type}) with enrollment {enrollment}")
         return None
+    
+    # Sort rooms by capacity to minimize over-allocation
+    available_rooms = available_rooms.sort_values(by="capacity")
     
     start_idx = time_slots.index(start_slot)
     slots_to_check = time_slots[start_idx:start_idx + duration_slots]
@@ -147,6 +145,8 @@ def is_slot_available(day, start_slot, duration_slots, timetable_key, faculty_id
     end_time = (datetime.strptime(start_slot, "%H:%M") + timedelta(minutes=slot_duration * duration_slots)).time()
     lunch_start = lunch_schedule[dept]["start"]
     lunch_end = lunch_schedule[dept]["end"]
+    
+    # Check for breaks
     if (start_time >= morning_break_start and start_time < morning_break_end) or \
        (end_time > morning_break_start and end_time <= morning_break_end) or \
        (start_time >= lunch_start and start_time < lunch_end) or \
@@ -159,33 +159,31 @@ def is_slot_available(day, start_slot, duration_slots, timetable_key, faculty_id
     
     slots_to_check = time_slots[start_idx:start_idx + duration_slots]
     
+    # Check for slot conflicts in the current timetable
     faculty_ids = set(str(faculty_ids).split(";")) if not pd.isna(faculty_ids) else set()
     for slot in slots_to_check:
         slot_schedule = schedule[day][slot]
         if slot_schedule[timetable_key]:
             return False
+        
+        # Check for faculty conflicts across all timetables
         for key in timetable_keys:
+            if key == timetable_key:
+                continue
             if slot_schedule[key]:
                 other_faculty = set(str(slot_schedule[key].get("faculty_ids", "")).split(";"))
                 if faculty_ids & other_faculty:
+                    logging.debug(f"Faculty conflict detected for faculty {faculty_ids & other_faculty} on {day} at {slot}")
                     return False
     return True
-
-def update_slot_availability():
-    for day in scheduling_days:
-        for slot in time_slots:
-            slot_usage = 0
-            for key in timetable_keys:
-                if schedule[day][slot].get(key):
-                    slot_usage += 1
-            slot_availability[day][slot] = slot_usage
 
 def get_available_slots(day, duration_slots, timetable_key, faculty_ids, section_id, dept):
     available_slots = []
     for start_slot in time_slots[:-duration_slots + 1]:
         if is_slot_available(day, start_slot, duration_slots, timetable_key, faculty_ids, section_id, dept):
             available_slots.append(start_slot)
-    available_slots.sort(key=lambda slot: slot_availability[day][slot])
+    # Sort slots by start time (left-skewed allocation)
+    available_slots.sort(key=lambda slot: datetime.strptime(slot, "%H:%M"))
     return available_slots
 
 # Handle electives: group by basket
@@ -205,13 +203,17 @@ for key, courses in basket_courses.items():
     course_codes = [course["course_code"] for course in courses]
     logging.info(f" - {basket_id} in {dept} semester {semester}: {course_codes}")
 
-# Process baskets (all courses in a basket have the same LTPSC)
+# Process baskets (schedule only one representative course per basket)
 basket_schedules = {}
 for key, courses in basket_courses.items():
     dept, semester, basket_id = key
     # Use the LTPSC of the first course since all courses in the basket have the same LTPSC
     standard_ltpsc = (courses[0]["lecture_hours"], courses[0]["tutorial_hours"], courses[0]["practical_hours"], courses[0]["self_study_hours"], courses[0]["credits"])
-    basket_schedules[key] = {"ltpsc": standard_ltpsc, "courses": []}
+    basket_schedules[key] = {
+        "ltpsc": standard_ltpsc,
+        "courses": [],
+        "representative_course": courses[0]  # Pick the first course as representative
+    }
     for course in courses:
         basket_schedules[key]["courses"].append({
             "course": course,
@@ -225,7 +227,7 @@ for key, courses in basket_courses.items():
             ].empty else course["enrollment"]
         })
 
-# Calculate total items for progress tracking
+# Calculate total items for progress tracking (one per basket + non-elective courses)
 total_items = len(courses_df[courses_df["is_elective"] == False]) + len(basket_schedules)
 items_processed = 0
 
@@ -268,10 +270,7 @@ for (course_code, faculty_ids), instances in combined_courses.items():
         for batch in range(batches):
             attempts = 0
             scheduled = False
-            days_shuffled = scheduling_days.copy()
-            random.shuffle(days_shuffled)
-            for day in days_shuffled:
-                update_slot_availability()
+            for day in scheduling_days:
                 available_slots = get_available_slots(day, practical_slots, timetable_keys_for_course[0], faculty_ids, course["section_id"], dept)
                 for start_slot in available_slots:
                     attempts += 1
@@ -302,12 +301,9 @@ for (course_code, faculty_ids), instances in combined_courses.items():
     for session in range(lecture_sessions):
         attempts = 0
         scheduled = False
-        days_shuffled = scheduling_days.copy()
-        random.shuffle(days_shuffled)
-        for day in days_shuffled:
+        for day in scheduling_days:
             if day in lecture_days:
                 continue
-            update_slot_availability()
             available_slots = get_available_slots(day, lecture_slots, timetable_keys_for_course[0], faculty_ids, course["section_id"], dept)
             for start_slot in available_slots:
                 attempts += 1
@@ -338,12 +334,9 @@ for (course_code, faculty_ids), instances in combined_courses.items():
     if tutorial_slots > 0:
         attempts = 0
         scheduled = False
-        days_shuffled = scheduling_days.copy()
-        random.shuffle(days_shuffled)
-        for day in days_shuffled:
+        for day in scheduling_days:
             if day in lecture_days:
                 continue
-            update_slot_availability()
             available_slots = get_available_slots(day, tutorial_slots, timetable_keys_for_course[0], faculty_ids, course["section_id"], dept)
             for start_slot in available_slots:
                 attempts += 1
@@ -373,12 +366,13 @@ for (course_code, faculty_ids), instances in combined_courses.items():
     progress = (items_processed / total_items) * 100
     logging.info(f"Progress: {items_processed}/{total_items} items scheduled ({progress:.2f}%)")
 
-# Schedule elective baskets (schedule only once per basket)
+# Schedule elective baskets (schedule only one representative course per basket)
 logging.info("Starting to schedule elective baskets")
 for key, basket_data in basket_schedules.items():
     dept, semester, basket_id = key
     ltpsc = basket_data["ltpsc"]
     courses = basket_data["courses"]
+    representative_course = basket_data["representative_course"]
     timetable_keys_for_basket = [course["timetable_key"] for course in courses]
     faculty_ids_set = set()
     for course_data in courses:
@@ -397,17 +391,13 @@ for key, basket_data in basket_schedules.items():
     practical_time_slots = []
     if practical_slots > 0:
         lab_capacity = rooms_df[rooms_df["type"].isin(["COMPUTER_LAB", "HARDWARE_LAB"])]["capacity"].min()
-        # Find max enrollment for batch calculation
         max_enrollment = max(course["enrollment"] for course in courses)
         batches = max(1, int(max_enrollment / lab_capacity) + (1 if max_enrollment % lab_capacity else 0))
         for batch in range(batches):
             attempts = 0
             scheduled = False
-            days_shuffled = scheduling_days.copy()
-            random.shuffle(days_shuffled)
-            for day in days_shuffled:
-                update_slot_availability()
-                available_slots = get_available_slots(day, practical_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), courses[0]["course"]["section_id"], dept)
+            for day in scheduling_days:
+                available_slots = get_available_slots(day, practical_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), representative_course["section_id"], dept)
                 for start_slot in available_slots:
                     attempts += 1
                     logging.info(f"Attempt {attempts} to schedule practical (Batch {chr(65+batch)}) for basket {basket_id} on {day} at {start_slot}")
@@ -419,6 +409,7 @@ for key, basket_data in basket_schedules.items():
                         if room:
                             rooms[course["course_code"]] = room
                         else:
+                            # Rollback room assignments if any course fails
                             for slot in time_slots[time_slots.index(start_slot):time_slots.index(start_slot) + practical_slots]:
                                 for r in rooms.values():
                                     if room_schedule[day][slot].get(r):
@@ -428,7 +419,7 @@ for key, basket_data in basket_schedules.items():
                         start_idx = time_slots.index(start_slot)
                         time_slot_range = f"{start_slot}-{time_slots[start_idx + practical_slots - 1]}"
                         practical_time_slots.append((day, time_slot_range))
-                        room_assignments = "\n".join([f"{course_code}: {room}" for course_code, room in rooms.items()])
+                        room_assignments = "\n".join([f"{course_code}-{room}" for course_code, room in rooms.items()])
                         for idx in range(start_idx, start_idx + practical_slots):
                             slot = time_slots[idx]
                             for key in timetable_keys_for_basket:
@@ -436,7 +427,7 @@ for key, basket_data in basket_schedules.items():
                                     "label": f"{basket_id} (LAB) (Batch {chr(65+batch)})\n{room_assignments}",
                                     "course_code": basket_id,
                                     "faculty_ids": ";".join(faculty_ids_set),
-                                    "section_id": courses[0]["course"]["section_id"],
+                                    "section_id": representative_course["section_id"],
                                     "component": "practical"
                                 }
                         for course_data in courses:
@@ -464,13 +455,10 @@ for key, basket_data in basket_schedules.items():
     for session in range(lecture_sessions):
         attempts = 0
         scheduled = False
-        days_shuffled = scheduling_days.copy()
-        random.shuffle(days_shuffled)
-        for day in days_shuffled:
+        for day in scheduling_days:
             if day in lecture_days:
                 continue
-            update_slot_availability()
-            available_slots = get_available_slots(day, lecture_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), courses[0]["course"]["section_id"], dept)
+            available_slots = get_available_slots(day, lecture_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), representative_course["section_id"], dept)
             for start_slot in available_slots:
                 attempts += 1
                 logging.info(f"Attempt {attempts} to schedule lecture session {session+1} for basket {basket_id} on {day} at {start_slot}")
@@ -491,7 +479,7 @@ for key, basket_data in basket_schedules.items():
                     start_idx = time_slots.index(start_slot)
                     time_slot_range = f"{start_slot}-{time_slots[start_idx + lecture_slots - 1]}"
                     lecture_time_slots.append((day, time_slot_range))
-                    room_assignments = "\n".join([f"{course_code}: {room}" for course_code, room in rooms.items()])
+                    room_assignments = "\n".join([f"{course_code}-{room}" for course_code, room in rooms.items()])
                     for idx in range(start_idx, start_idx + lecture_slots):
                         slot = time_slots[idx]
                         for key in timetable_keys_for_basket:
@@ -499,7 +487,7 @@ for key, basket_data in basket_schedules.items():
                                 "label": f"{basket_id} (L)\n{room_assignments}",
                                 "course_code": basket_id,
                                 "faculty_ids": ";".join(faculty_ids_set),
-                                "section_id": courses[0]["course"]["section_id"],
+                                "section_id": representative_course["section_id"],
                                 "component": "lecture"
                             }
                     for course_data in courses:
@@ -534,13 +522,10 @@ for key, basket_data in basket_schedules.items():
     if tutorial_slots > 0:
         attempts = 0
         scheduled = False
-        days_shuffled = scheduling_days.copy()
-        random.shuffle(days_shuffled)
-        for day in days_shuffled:
+        for day in scheduling_days:
             if day in lecture_days:
                 continue
-            update_slot_availability()
-            available_slots = get_available_slots(day, tutorial_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), courses[0]["course"]["section_id"], dept)
+            available_slots = get_available_slots(day, tutorial_slots, timetable_keys_for_basket[0], ";".join(faculty_ids_set), representative_course["section_id"], dept)
             for start_slot in available_slots:
                 attempts += 1
                 logging.info(f"Attempt {attempts} to schedule tutorial for basket {basket_id} on {day} at {start_slot}")
@@ -561,7 +546,7 @@ for key, basket_data in basket_schedules.items():
                     start_idx = time_slots.index(start_slot)
                     time_slot_range = f"{start_slot}-{time_slots[start_idx + tutorial_slots - 1]}"
                     tutorial_time_slots.append((day, time_slot_range))
-                    room_assignments = "\n".join([f"{course_code}: {room}" for course_code, room in rooms.items()])
+                    room_assignments = "\n".join([f"{course_code}-{room}" for course_code, room in rooms.items()])
                     for idx in range(start_idx, start_idx + tutorial_slots):
                         slot = time_slots[idx]
                         for key in timetable_keys_for_basket:
@@ -569,7 +554,7 @@ for key, basket_data in basket_schedules.items():
                                 "label": f"{basket_id} (T)\n{room_assignments}",
                                 "course_code": basket_id,
                                 "faculty_ids": ";".join(faculty_ids_set),
-                                "section_id": courses[0]["course"]["section_id"],
+                                "section_id": representative_course["section_id"],
                                 "component": "tutorial"
                             }
                     for detail in elective_details:
@@ -589,6 +574,7 @@ for key, basket_data in basket_schedules.items():
 
 # Schedule non-elective, non-combined courses
 logging.info("Starting to schedule non-elective, non-combined courses")
+processed_basket_ids = set()
 for dept, semesters in semesters_by_dept.items():
     logging.info(f"Processing department: {dept}")
     for semester in semesters:
@@ -599,8 +585,17 @@ for dept, semesters in semesters_by_dept.items():
             logging.info(f"Processing section: {timetable_key}")
             section_courses = semester_courses[semester_courses["section_id"] == section_id]
             for _, course in section_courses.iterrows():
-                if course["combined"] or course["is_elective"]:
+                # Skip combined courses
+                if course["combined"]:
                     continue
+                # Handle elective courses
+                if course["is_elective"]:
+                    basket_id = course["basket_id"]
+                    if pd.isna(basket_id) or basket_id in processed_basket_ids:
+                        continue
+                    processed_basket_ids.add(basket_id)
+                    continue  # Skip since we already scheduled the basket
+                # Schedule non-elective course
                 course_code = course["course_code"]
                 logging.info(f"Scheduling course: {course_code}")
                 enrollment = course["enrollment"]
@@ -617,10 +612,7 @@ for dept, semesters in semesters_by_dept.items():
                     for batch in range(batches):
                         attempts = 0
                         scheduled = False
-                        days_shuffled = scheduling_days.copy()
-                        random.shuffle(days_shuffled)
-                        for day in days_shuffled:
-                            update_slot_availability()
+                        for day in scheduling_days:
                             available_slots = get_available_slots(day, practical_slots, timetable_key, course["faculty_ids"], section_id, dept)
                             for start_slot in available_slots:
                                 attempts += 1
@@ -650,12 +642,9 @@ for dept, semesters in semesters_by_dept.items():
                 for session in range(lecture_sessions):
                     attempts = 0
                     scheduled = False
-                    days_shuffled = scheduling_days.copy()
-                    random.shuffle(days_shuffled)
-                    for day in days_shuffled:
+                    for day in scheduling_days:
                         if day in lecture_days:
                             continue
-                        update_slot_availability()
                         available_slots = get_available_slots(day, lecture_slots, timetable_key, course["faculty_ids"], section_id, dept)
                         for start_slot in available_slots:
                             attempts += 1
@@ -685,12 +674,9 @@ for dept, semesters in semesters_by_dept.items():
                 if tutorial_slots > 0:
                     attempts = 0
                     scheduled = False
-                    days_shuffled = scheduling_days.copy()
-                    random.shuffle(days_shuffled)
-                    for day in days_shuffled:
+                    for day in scheduling_days:
                         if day in lecture_days:
                             continue
-                        update_slot_availability()
                         available_slots = get_available_slots(day, tutorial_slots, timetable_key, course["faculty_ids"], section_id, dept)
                         for start_slot in available_slots:
                             attempts += 1
