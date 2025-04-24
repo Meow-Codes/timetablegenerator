@@ -1,3 +1,0 @@
-1) Working days in a week : Monday to Friday
-2) Working hours in a week: based on ltpsc of all the courses in a semester L+T+P
-3)Course Code, Course Name registrationCount,semester,branch

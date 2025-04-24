@@ -1,0 +1,208 @@
+course_id,department,semester,course_code,course_name,lecture_hours,tutorial_hours,practical_hours,self_study_hours,credits,faculty_ids,is_elective,basket_id,combined,enrollment,section_id
+1,CSE,2A_premid,CS162,Optimization,3,1,0,0,2,10,FALSE,,FALSE,84,1
+2,CSE,2A_premid,CS164,Data Structures & Algorithms,3,0,2,0,4,46,FALSE,,FALSE,84,1
+3,CSE,2A_premid,CS163,Computer Architecture,3,1,0,0,2,24,FALSE,,FALSE,84,1
+4,CSE,2A_premid,CS165,Mathematical foundations of Computing,3,0,2,0,3,4,FALSE,,FALSE,84,1
+5,CSE,2A_premid,HS204 / HS153,Economics (HSS / I&E),3,0,0,0,3,5;9,FALSE,,FALSE,84,1
+6,CSE,2A_premid,ASD151,Introduction to Design,3,1,0,0,2,30,TRUE,B1,TRUE,28,1
+7,CSE,2A_premid,HS151,Introduction to Personal Finance,3,1,0,0,2,32,TRUE,B1,TRUE,28,1
+8,CSE,2A_premid,AB103,Introduction to Internet of Things,3,1,0,0,2,12,TRUE,B1,TRUE,28,1
+9,CSE,2A_premid,AB104,Concurrency and Computation,3,1,0,0,2,22,TRUE,B2,TRUE,28,1
+10,CSE,2A_premid,AB105,Computer Intensive Statistical Methods,3,1,0,0,2,29,TRUE,B2,TRUE,28,1
+11,CSE,2A_premid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B2,TRUE,28,1
+12,CSE,2B_premid,CS162,Optimization,3,1,0,0,2,10,FALSE,,FALSE,84,2
+13,CSE,2B_premid,CS164,Data Structures & Algorithms,3,0,2,0,4,39,FALSE,,FALSE,84,2
+14,CSE,2B_premid,CS163,Computer Architecture,3,1,0,0,2,46,FALSE,,FALSE,84,2
+15,CSE,2B_premid,CS165,Mathematical foundations of Computing,2,0,2,0,3,4,FALSE,,FALSE,84,2
+16,CSE,2B_premid,HS204 / HS153,Economics (HSS / I&E),3,0,0,0,3,5;9,FALSE,,FALSE,84,2
+17,CSE,2B_premid,ASD151,Introduction to Design,3,1,0,0,2,30,TRUE,B1,TRUE,28,2
+18,CSE,2B_premid,HS151,Introduction to Personal Finance,3,1,0,0,2,32,TRUE,B1,TRUE,28,2
+19,CSE,2B_premid,AB103,Introduction to Internet of Things,3,1,0,0,2,12,TRUE,B1,TRUE,28,2
+20,CSE,2B_premid,AB104,Concurrency and Computation,3,1,0,0,2,22,TRUE,B2,TRUE,28,2
+21,CSE,2B_premid,AB105,Computer Intensive Statistical Methods,3,1,0,0,2,29,TRUE,B2,TRUE,28,2
+22,CSE,2B_premid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B2,TRUE,28,2
+23,CSE,2A_postmid,MA202,Linear Algebra,3,1,0,0,2,33,FALSE,,FALSE,84,1
+24,CSE,2A_postmid,CS163,Data Structures & Algorithms,3,0,2,0,4,46,FALSE,,FALSE,84,1
+25,CSE,2A_postmid,HS204,Economics/ Innovation and Entrepreneurship,3,0,0,0,3,5,FALSE,,TRUE,84,1
+26,CSE,2A_postmid,HS153/ New,Innovation and Entrepreneurship,3,0,0,0,3,9,FALSE,,TRUE,84,1
+27,CSE,2A_postmid,CS165,Mathematical foundations of Computing,3,0,0,0,3,4,FALSE,,FALSE,84,1
+28,CSE,2A_postmid,New,Visual Design-PAPC,1.5,1,0,0,2,30,FALSE,,TRUE,84,1
+29,CSE,2A_postmid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B1,TRUE,28,1
+30,CSE,2A_postmid,AB108,Introduction to Digital VLSI Design,3,1,0,0,2,23,TRUE,B1,TRUE,28,1
+31,CSE,2A_postmid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B1,TRUE,28,1
+32,CSE,2A_postmid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B1,TRUE,28,1
+33,CSE,2A_postmid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B1,TRUE,28,1
+34,CSE,2A_postmid,AB202,Photography101,3,1,0,0,2,24,TRUE,B1,TRUE,28,1
+35,CSE,2B_postmid,MA202,Linear Algebra,3,1,0,0,2,34,FALSE,,FALSE,84,2
+36,CSE,2B_postmid,CS163,Data Structures & Algorithms,3,0,2,0,4,39,FALSE,,FALSE,84,2
+37,CSE,2B_postmid,HS204,Economics,3,0,0,0,3,5,FALSE,,TRUE,84,2
+38,CSE,2B_postmid,HS153/New,Innovation and Entrepreneurship,3,0,0,0,3,9,FALSE,,TRUE,84,2
+39,CSE,2B_postmid,CS165,Mathematical foundations of Computing,3,0,0,0,3,4,FALSE,,FALSE,84,2
+40,CSE,2B_postmid,New,Visual Design-PAPC,1.5,1,0,0,2,30,FALSE,,TRUE,84,2
+41,CSE,2B_postmid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B1,TRUE,28,2
+42,CSE,2B_postmid,AB108,Introduction to Digital VLSI Design,3,1,0,0,2,23,TRUE,B1,TRUE,28,2
+43,CSE,2B_postmid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B1,TRUE,28,2
+44,CSE,2B_postmid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B2,TRUE,28,2
+45,CSE,2B_postmid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B2,TRUE,28,2
+46,CSE,2B_postmid,AB202,Photography101,3,1,0,0,2,24,TRUE,B2,TRUE,28,2
+47,CSE,4A,MA202,Linear Algebra,3,1,0,0,4,2,FALSE,,FALSE,70,3
+48,CSE,4A,CS206,Theory of Computing,3,1,0,0,4,21,FALSE,,FALSE,70,3
+49,CSE,4A,CS204,Operating Systems,3,1,0,0,4,39,FALSE,,FALSE,70,3
+50,CSE,4A,CS301,Software Engineering,3,1,0,0,4,41,FALSE,,FALSE,70,3
+51,CSE,4A,CS310,Database Management Systems,3,1,2,0,5,22,FALSE,,FALSE,70,3
+52,CSE,4A,HS205,Ethics,3,0,0,0,3,14,FALSE,,TRUE,70,3
+53,CSE,4B,MA202,Linear Algebra,3,1,0,0,4,2,FALSE,,FALSE,70,4
+54,CSE,4B,CS206,Theory of Computing,3,1,0,0,4,36,FALSE,,FALSE,70,4
+55,CSE,4B,CS204,Operating Systems,3,1,0,0,4,16;10,FALSE,,FALSE,70,4
+56,CSE,4B,CS301,Software Engineering,3,1,0,0,4,37,FALSE,,FALSE,70,4
+57,CSE,4B,CS310,Database Management Systems,3,1,2,0,5,1,FALSE,,FALSE,70,4
+58,CSE,4B,HS205,Ethics,3,0,0,0,3,14,FALSE,,TRUE,70,4
+59,CSE,6A,AB203,Deep Learning for Computer Vision,3,1,0,0,4,7,TRUE,B1,TRUE,18,5
+60,CSE,6A,AB204,Large Languange Models,3,1,0,0,4,38,TRUE,B1,TRUE,18,5
+61,CSE,6A,AB205,Natural Language Processing,3,1,0,0,4,15,TRUE,B1,TRUE,18,5
+62,CSE,6A,AB206,Deep Speech Processing,3,1,0,0,4,35,TRUE,B1,TRUE,18,5
+63,CSE,6A,AB207,CMOS RF Circuit Design,3,1,0,0,4,20;26,TRUE,B1,TRUE,18,5
+64,CSE,6A,AB208,Blockchain Technology,3,1,0,0,4,25,TRUE,B2,TRUE,18,5
+65,CSE,6A,AB209,Introduction to 5G Network,3,1,0,0,4,12,TRUE,B2,TRUE,18,5
+66,CSE,6A,AB301,Model Checking,3,1,0,0,4,21,TRUE,B2,TRUE,18,5
+67,CSE,6A,AB302,Quantum Communication,3,1,0,0,4,6,TRUE,B2,TRUE,18,5
+68,CSE,6A,AB303,Quantum HPC and AI,3,1,0,0,4,18,TRUE,B2,TRUE,18,5
+69,CSE,6A,AB304,Design Thinking and Innovation,3,1,0,0,4,30,TRUE,B2,TRUE,18,5
+70,CSE,6A,AB305,Automotive Embedded and Multimedia Systems,3,1,0,0,4,42;33,TRUE,B3,TRUE,18,5
+71,CSE,6A,AB306,Microwave Engineering,3,1,0,0,4,34,TRUE,B3,TRUE,18,5
+72,CSE,6A,AB307,Computer Graphics,3,1,0,0,4,41,TRUE,B3,TRUE,18,5
+73,CSE,6A,AB308,Machine learning,3,1,0,0,4,9,TRUE,B3,TRUE,18,5
+74,CSE,6A,AB309,Virtualization and Cloud Computing,3,1,0,0,4,16,TRUE,B3,TRUE,18,5
+75,CSE,6A,AB401,Data Analytics and Visualization,3,1,0,0,4,36,TRUE,B4,TRUE,18,5
+76,CSE,6A,AB402,Statistics for Health Technology,3,1,0,0,4,29,TRUE,B4,TRUE,18,5
+77,CSE,6A,AB403,Medical Image Analysis,3,1,0,0,4,11,TRUE,B4,TRUE,18,5
+78,CSE,6A,AB404,Bioinformatics,3,1,0,0,4,37,TRUE,B4,TRUE,18,5
+79,CSE,6A,CS307,Machine Learning,3,0,2,0,4,11,FALSE,,FALSE,71,5
+80,CSE,6B,AB203,Deep Learning for Computer Vision,3,1,0,0,4,7,TRUE,B1,TRUE,18,6
+81,CSE,6B,AB204,Large Languange Models,3,1,0,0,4,38,TRUE,B1,TRUE,18,6
+82,CSE,6B,AB205,Natural Language Processing,3,1,0,0,4,15,TRUE,B1,TRUE,18,6
+83,CSE,6B,AB206,Deep Speech Processing,3,1,0,0,4,35,TRUE,B1,TRUE,18,6
+84,CSE,6B,AB207,CMOS RF Circuit Design,3,1,0,0,4,20;26,TRUE,B1,TRUE,18,6
+85,CSE,6B,AB208,Blockchain Technology,3,1,0,0,4,25,TRUE,B2,TRUE,18,6
+86,CSE,6B,AB209,Introduction to 5G Network,3,1,0,0,4,12,TRUE,B2,TRUE,18,6
+87,CSE,6B,AB301,Model Checking,3,1,0,0,4,21,TRUE,B2,TRUE,18,6
+88,CSE,6B,AB302,Quantum Communication,3,1,0,0,4,6,TRUE,B2,TRUE,18,6
+89,CSE,6B,AB303,Quantum HPC and AI,3,1,0,0,4,18,TRUE,B2,TRUE,18,6
+90,CSE,6B,AB304,Design Thinking and Innovation,3,1,0,0,4,30,TRUE,B2,TRUE,18,6
+91,CSE,6B,AB305,Automotive Embedded and Multimedia Systems,3,1,0,0,4,42;33,TRUE,B3,TRUE,18,6
+92,CSE,6B,AB306,Microwave Engineering,3,1,0,0,4,34,TRUE,B3,TRUE,18,6
+93,CSE,6B,AB307,Computer Graphics,3,1,0,0,4,41,TRUE,B3,TRUE,18,6
+94,CSE,6B,AB308,Machine learning,3,1,0,0,4,9,TRUE,B3,TRUE,18,6
+95,CSE,6B,AB309,Virtualization and Cloud Computing,3,1,0,0,4,16,TRUE,B3,TRUE,18,6
+96,CSE,6B,AB401,Data Analytics and Visualization,3,1,0,0,4,36,TRUE,B4,TRUE,18,6
+97,CSE,6B,AB402,Statistics for Health Technology,3,1,0,0,4,29,TRUE,B4,TRUE,18,6
+98,CSE,6B,AB403,Medical Image Analysis,3,1,0,0,4,11,TRUE,B4,TRUE,18,6
+99,CSE,6B,AB404,Bioinformatics,3,1,0,0,4,37,TRUE,,FALSE,18,6
+100,CSE,6B,CS307,Machine Learning,3,0,2,0,4,15,FALSE,,FALSE,71,6
+101,DSAI,2_premid,MA163,Linear Algebra,3,1,0,0,2,33,FALSE,,FALSE,88,7
+102,DSAI,2_premid,CS162,Optimization,3,0,1,0,2,10,FALSE,,TRUE,88,7
+103,DSAI,2_premid,CS164,Computer Architecture,3,1,0,0,2,17,FALSE,,FALSE,88,7
+104,DSAI,2_premid,HS161,HSS / IE-Economics,3,0,0,0,3,5;9,FALSE,,FALSE,88,7
+105,DSAI,2_premid,CS163,Data Structures & Algorithms,3,0,2,0,4,38,FALSE,,FALSE,88,7
+106,DSAI,2_premid,DS164,Data Curation Techniques,0,2,2,0,3,32,FALSE,,FALSE,88,7
+107,DSAI,2_premid,ASD151,Introduction to Design,3,1,0,0,2,30,TRUE,B1,TRUE,15,7
+108,DSAI,2_premid,HS151,Introduction to Personal Finance,3,1,0,0,2,32,TRUE,B1,TRUE,15,7
+109,DSAI,2_premid,AB103,Introduction to Internet of Things,3,1,0,0,2,12,TRUE,B1,TRUE,15,7
+110,DSAI,2_premid,AB104,Concurrency and Computation,3,1,0,0,2,22,TRUE,B1,TRUE,15,7
+111,DSAI,2_premid,AB105,Computer Intensive Statistical Methods,3,1,0,0,2,29,TRUE,B1,TRUE,15,7
+112,DSAI,2_premid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B1,TRUE,15,7
+113,DSAI,2_premid,AB202,Photography101,3,1,0,0,2,24,TRUE,B2,TRUE,22,7
+114,DSAI,2_premid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B2,TRUE,22,7
+115,DSAI,2_premid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B2,TRUE,22,7
+116,DSAI,2_premid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B2,TRUE,22,7
+117,DSAI,2_postmid,CS162,Optimization,3,1,0,0,2,10,FALSE,,TRUE,88,7
+118,DSAI,2_postmid,CS164,Computer Architecture,3,0,2,0,2,17,FALSE,,FALSE,88,7
+119,DSAI,2_postmid,HS161,English Language and Communication,3,0,0,0,3,27,FALSE,,FALSE,88,7
+120,DSAI,2_postmid,CS163,Data Structures & Algorithms,3,0,2,0,4,38,FALSE,,FALSE,88,7
+121,DSAI,2_postmid,DS164,Data Curation Techniques,0,2,2,0,3,32,FALSE,,FALSE,88,7
+122,DSAI,2_postmid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B3,TRUE,22,7
+123,DSAI,2_postmid,AB108,Introduction to Digital VLSI Design,3,1,0,0,2,23,TRUE,B3,TRUE,22,7
+124,DSAI,2_postmid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B3,TRUE,22,7
+125,DSAI,2_postmid,AB701,Principles of Quantum Physics,3,1,0,0,2,6,TRUE,B3,TRUE,22,7
+126,DSAI,2_postmid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B4,TRUE,22,7
+127,DSAI,2_postmid,AB202,Photography101,3,1,0,0,2,24,TRUE,B4,TRUE,22,7
+128,DSAI,2_postmid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B4,TRUE,22,7
+129,DSAI,2_postmid,AB405,Visual Design – Principles and Application in Product Communication,3,1,0,0,2,30,TRUE,B4,TRUE,22,7
+130,DSAI,4,MA202,Linear Algebra,3,1,0,0,4,7,FALSE,,FALSE,75,8
+131,DSAI,4,HS206,Industrial Social Psychology,3,0,0,0,3,19,FALSE,,FALSE,75,8
+132,DSAI,4,CS204,Operating Systems,3,1,0,0,4,17,FALSE,,FALSE,75,8
+133,DSAI,4,DS204,Software Engineering and Services,3,0,2,0,4,3,FALSE,,FALSE,75,8
+134,DSAI,4,CS310,Database Management System,3,1,2,0,5,31;40,FALSE,,FALSE,75,8
+135,DSAI,4,DS205,Global Business Perspectives,3,0,0,0,3,43,FALSE,,FALSE,75,8
+136,DSAI,6,DS309,Cloud Computing,3,0,0,4,4,3,FALSE,,FALSE,67,9
+137,DSAI,6,DS306,Financial Data Analytics,3,0,0,4,4,40,FALSE,,FALSE,67,9
+138,DSAI,6,DS307,Innovation & Entrepreneurship,3,1,0,0,4,44,FALSE,,FALSE,67,9
+139,DSAI,6,DS308,Data Security & Privacy,3,1,0,0,4,1;25,FALSE,,FALSE,67,9
+140,DSAI,6,DS399,Mini Project-I,0,0,0,8,2,31,FALSE,,FALSE,67,9
+141,DSAI,6,HS101,Environmental Studies,0,0,0,5,2,,FALSE,,FALSE,67,9
+142,DSAI,6,AB203,Deep Learning for Computer Vision,3,1,0,0,4,7,TRUE,B1,TRUE,18,9
+143,DSAI,6,AB204,Large Languange Models,3,1,0,0,4,38,TRUE,B1,TRUE,18,9
+144,DSAI,6,AB205,Natural Language Processing,3,1,0,0,4,15,TRUE,B1,TRUE,18,9
+145,DSAI,6,AB206,Deep Speech Processing,3,1,0,0,4,35,TRUE,B1,TRUE,18,9
+146,DSAI,6,AB208,Blockchain Technology,3,1,0,0,4,25,TRUE,B2,TRUE,18,9
+147,DSAI,6,AB209,Introduction to 5G Network,3,1,0,0,4,12,TRUE,B2,TRUE,18,9
+148,DSAI,6,AB301,Model Checking,3,1,0,0,4,21,TRUE,B2,TRUE,18,9
+149,DSAI,6,AB302,Quantum Communication,3,1,0,0,4,6,TRUE,B2,TRUE,18,9
+150,DSAI,6,AB303,Quantum HPC and AI,3,1,0,0,4,18,TRUE,B2,TRUE,18,9
+151,DSAI,6,AB304,Design Thinking and Innovation,3,1,0,0,4,30,TRUE,B2,TRUE,18,9
+152,ECE,2_premid,MA202,Linear Algebra,3,1,0,0,2,34,FALSE,,FALSE,63,10
+153,ECE,2_premid,CS162,Optimization,3,1,0,0,2,10,FALSE,,TRUE,63,10
+154,ECE,2_premid,CS164,Computer Architecture,3,1,0,0,2,13,FALSE,,FALSE,63,10
+155,ECE,2_premid,HS161,English Language and Communication,3,0,0,0,3,27,FALSE,,FALSE,63,10
+156,ECE,2_premid,CS163,Data Structures and Algorithms,3,0,2,0,4,24,FALSE,,FALSE,63,10
+157,ECE,2_premid,new,Network Analysis,3,0,0,0,3,33,FALSE,,FALSE,63,10
+158,ECE,2_premid,ASD151,Introduction to Design,3,1,0,0,2,30,TRUE,B1,TRUE,15,10
+159,ECE,2_premid,HS151,Introduction to Personal Finance,3,1,0,0,2,32,TRUE,B1,TRUE,15,10
+160,ECE,2_premid,AB103,Introduction to Internet of Things,3,1,0,0,2,12,TRUE,B1,TRUE,15,10
+161,ECE,2_premid,AB104,Concurrency and Computation,3,1,0,0,2,22,TRUE,B1,TRUE,15,10
+162,ECE,2_premid,AB105,Computer Intensive Statistical Methods,3,1,0,0,2,29,TRUE,B1,TRUE,15,10
+163,ECE,2_premid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B1,TRUE,15,10
+164,ECE,2_premid,AB202,Photography101,3,1,0,0,2,24,TRUE,B2,TRUE,22,10
+165,ECE,2_premid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B2,TRUE,22,10
+166,ECE,2_premid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B2,TRUE,22,10
+167,ECE,2_premid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B2,TRUE,22,10
+168,ECE,2_postmid,CS162,Optimization,3,1,0,0,2,10,FALSE,,TRUE,63,10
+169,ECE,2_postmid,CS164,Computer Architecture,3,1,0,0,2,13,FALSE,,FALSE,63,10
+170,ECE,2_postmid,HS161,English Language and Communication,3,0,0,0,3,27,FALSE,,FALSE,63,10
+171,ECE,2_postmid,CS163,Data Structures and Algorithms,3,0,2,0,4,24,FALSE,,FALSE,63,10
+172,ECE,2_postmid,new,Network Analysis,3,0,0,0,3,33,FALSE,,FALSE,63,10
+173,ECE,2_postmid,AB107,Data Science with Python,3,1,0,0,2,1,TRUE,B3,TRUE,22,10
+174,ECE,2_postmid,AB108,Introduction to Digital VLSI Design,3,1,0,0,2,23,TRUE,B3,TRUE,22,10
+175,ECE,2_postmid,AB106,Industry Insights Program Part 1,3,1,0,0,2,44;45,TRUE,B3,TRUE,22,10
+176,ECE,2_postmid,AB701,Principles of Quantum Physics,3,1,0,0,2,6,TRUE,B3,TRUE,22,10
+177,ECE,2_postmid,AB109,Linux for Engineers,3,1,0,0,2,31,TRUE,B4,TRUE,22,10
+178,ECE,2_postmid,AB202,Photography101,3,1,0,0,2,24,TRUE,B4,TRUE,22,10
+179,ECE,2_postmid,AB201,Introduction to Holistic Personality Development,3,1,0,0,2,47;8,TRUE,B4,TRUE,22,10
+180,ECE,2_postmid,AB405,Visual Design – Principles and Application in Product Communication,3,1,0,0,2,30,TRUE,B4,TRUE,22,10
+181,ECE,4,MA208,Probability and Random Processes,3,1,0,0,4,26,FALSE,,FALSE,61,11
+182,ECE,4,EC205,Control Systems,3,0,2,0,4,20,FALSE,,FALSE,61,11
+183,ECE,4,EC310,Embedded Systems Design,3,1,0,0,4,23,FALSE,,FALSE,61,11
+184,ECE,4,EC204,Analog and Digital Communication,3,1,2,0,5,34,FALSE,,FALSE,61,11
+185,ECE,4,HS204,Economics,3,1,0,0,4,5,FALSE,,FALSE,61,11
+186,ECE,4,HS205,Ethics,3,0,0,0,3,14,FALSE,,TRUE,61,11
+187,ECE,6,EC307,Wireless Communication,3,0,0,4,4,28,FALSE,,FALSE,52,12
+188,ECE,6,AB203,Deep Learning for Computer Vision,3,1,0,0,4,7,TRUE,B1,TRUE,18,12
+189,ECE,6,AB204,Large Languange Models,3,1,0,0,4,38,TRUE,B1,TRUE,18,12
+190,ECE,6,AB205,Natural Language Processing,3,1,0,0,4,15,TRUE,B1,TRUE,18,12
+191,ECE,6,AB206,Deep Speech Processing,3,1,0,0,4,35,TRUE,B1,TRUE,18,12
+192,ECE,6,AB207,CMOS RF Circuit Design,3,1,0,0,4,20;26,TRUE,B1,TRUE,18,12
+193,ECE,6,AB208,Blockchain Technology,3,1,0,0,4,25,TRUE,B2,TRUE,18,12
+194,ECE,6,AB209,Introduction to 5G Network,3,1,0,0,4,12,TRUE,B2,TRUE,18,12
+195,ECE,6,AB301,Model Checking,3,1,0,0,4,21,TRUE,B2,TRUE,18,12
+196,ECE,6,AB302,Quantum Communication,3,1,0,0,4,6,TRUE,B2,TRUE,18,12
+197,ECE,6,AB303,Quantum HPC and AI,3,1,0,0,4,18,TRUE,B2,TRUE,18,12
+198,ECE,6,AB304,Design Thinking and Innovation,3,1,0,0,4,30,TRUE,B2,TRUE,18,12
+199,ECE,6,AB305,Automotive Embedded and Multimedia Systems,3,1,0,0,4,42;33,TRUE,B3,TRUE,18,12
+200,ECE,6,AB306,Microwave Engineering,3,1,0,0,4,34,TRUE,B3,TRUE,18,12
+201,ECE,6,AB307,Computer Graphics,3,1,0,0,4,41,TRUE,B3,TRUE,18,12
+202,ECE,6,AB308,Machine learning,3,1,0,0,4,9,TRUE,B3,TRUE,18,12
+203,ECE,6,AB309,Virtualization and Cloud Computing,3,1,0,0,4,16,TRUE,B3,TRUE,18,12
+204,ECE,6,AB401,Data Analytics and Visualization,3,1,0,0,4,36,TRUE,B4,TRUE,18,12
+205,ECE,6,AB402,Statistics for Health Technology,3,1,0,0,4,29,TRUE,B4,TRUE,18,12
+206,ECE,6,AB403,Medical Image Analysis,3,1,0,0,4,11,TRUE,B4,TRUE,18,12
+207,ECE,6,AB404,Bioinformatics,3,1,0,0,4,37,TRUE,B4,TRUE,18,12

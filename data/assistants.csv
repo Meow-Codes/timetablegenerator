@@ -1,0 +1,3 @@
+assistant_id,assistant_name,course_id,preference_day,preference_start_time,preference_end_time,is_lab_eligible
+1,John Doe,1,Monday,09:00,12:00,TRUE
+2,Jane Smith,2,Tuesday,13:00,16:00,FALSE

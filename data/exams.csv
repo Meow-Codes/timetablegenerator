@@ -1,0 +1,3 @@
+course_id,duration_minutes,requires_bench
+1,120,TRUE
+2,180,FALSE

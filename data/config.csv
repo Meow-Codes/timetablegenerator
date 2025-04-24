@@ -1,0 +1,12 @@
+parameter,value
+slot_duration_minutes,30
+morning_break_start,10:30
+morning_break_duration_minutes,15
+lunch_break_start,13:30
+lunch_break_duration_minutes,60
+inter_class_break_minutes,0
+mess_capacity,200
+teaching_assistant_threshold,100
+scheduling_days,Monday;Tuesday;Wednesday;Thursday;Friday
+scheduling_hours_start,09:00
+scheduling_hours_end,17:00
